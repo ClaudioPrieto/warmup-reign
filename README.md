@@ -1,4 +1,4 @@
-# warmup-reign
+# Warmup project Reign
 
 ## Run using Docker Compose
 

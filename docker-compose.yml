@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  client:
+    restart: always
+    container_name: react-reing
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - "3000:3000"
+    links:
+      - api
+  api:
+    restart: always
+    container_name: blog-nest
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+        - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI='mongodb://mongo/warmup-app'
+    links:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: db_mongo
+    environment:
+      - MONGODB_DATABASE= 'warmup-app'
+    ports:
+      - 27017:27017
+    volumes:
+      - /data/mongodb/db:/data/db

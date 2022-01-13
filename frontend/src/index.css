@@ -24,7 +24,7 @@
 .articles-table {
   font-family: "Lucida Console", "Courier New", monospace;
   border-collapse:separate; 
-  border-spacing: 0 1em;
+  border-spacing: 0 0;
   display: table;
   width: 100%;
   padding: 20px;
@@ -34,6 +34,22 @@
   border-bottom: 1px solid #ccc;
   text-align: left;
   font-size: 13pt;
+}
+
+.articles-table tr .title {
+  color: #333;
+}
+
+.articles-table tr .author {
+  color: #999;
+}
+
+.articles-table tr .date {
+  color: #333;
+}
+
+tr {
+  height: 60px;
 }
 
 tr:hover {

@@ -14,7 +14,7 @@ const Home = () => {
     });
   }, []);
 
-  // Fix onClick function in table∫
+  // Fix onClick function in table
 
   return(
     <div className='container'>
@@ -26,9 +26,9 @@ const Home = () => {
         <table className='articles-table'>
           {articles.map((article, index) => (
             <tr key={index}>
-              <td onClick={() => window.open(article.url, "_blank")}>{article.title}</td>
-              <td onClick={() => window.open(article.url, "_blank")}>{article.author}</td>
-              <td onClick={() => window.open(article.url, "_blank")}>{article.release_date}</td>
+              <td className='title' onClick={() => window.open(article.url, "_blank")}>{ article.title }</td>
+              <td className='author' onClick={() => window.open(article.url, "_blank")}>-{ article.author }-</td>
+              <td className='date' onClick={() => window.open(article.url, "_blank")}>{ article.release_date }</td>
               <td>
                 <div className='edit_hover_class'>
                     <a href='#'><img src='/trash.png' /></a>

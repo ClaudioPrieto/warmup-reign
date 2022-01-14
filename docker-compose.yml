@@ -8,7 +8,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - '.:/app'
+      - './frontend:/app'
       - '/app/node_modules'
     ports:
       - "3000:3000"
@@ -20,8 +20,11 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    volumes:
+      - './backend:/app'
+      - '/app/node_modules'
     ports:
-        - "5000:5000"
+      - "5000:5000"
     environment:
       - NODE_ENV=development
       - MONGODB_URI='mongodb://mongo/warmup-app'

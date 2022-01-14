@@ -1,4 +1,5 @@
 export class CreateArticleDTO {
+    readonly uid: Number;
     readonly title: String;
     readonly author: String;
     readonly url: String;

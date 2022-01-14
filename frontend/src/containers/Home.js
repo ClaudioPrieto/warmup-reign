@@ -14,8 +14,6 @@ const Home = () => {
     });
   }, []);
 
-  // Fix onClick function in table
-
   return(
     <div className='container'>
       <div className='header'>
@@ -31,7 +29,7 @@ const Home = () => {
               <td className='date' onClick={() => window.open(article.url, "_blank")}>{ article.release_date }</td>
               <td>
                 <div className='edit_hover_class'>
-                    <a href='#'><img src='/trash.png' /></a>
+                  <a href='#'><img src='/trash.png' /></a>
                 </div>
               </td>
             </tr>

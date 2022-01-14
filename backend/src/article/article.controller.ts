@@ -4,30 +4,35 @@ import { CreateArticleDTO } from './dto/create-article.dto';
 
 @Controller('articles')
 export class ArticleController {
-  constructor(private customerService: ArticleService) { }
+  constructor(private articleService: ArticleService) { }
     
   @Get()
   async getAllArticle(@Res() res) {
-    const articles = await this.customerService.getAllArticle();
+    const articles = await this.articleService.getAllArticle();
     return res.status(HttpStatus.OK).json(articles);
   }
 
   @Delete()
     async deleteArticle(@Res() res, @Query('articleID') articleID) {
-      const article = await this.customerService.deleteArticle(articleID);
+      const article = await this.articleService.deleteArticle(articleID);
       if (!article) throw new NotFoundException('Article does not exist');
       return res.status(HttpStatus.OK).json({
-        message: 'Customer has been deleted',
+        message: 'Article has been deleted',
         article
       })
   }
 
   @Post()
-    async addCustomer(@Res() res, @Body() createCustomerDTO: CreateArticleDTO) {
-      const customer = await this.customerService.addArticle(createCustomerDTO);
+    async addArticle(@Res() res, @Body() createArticleDTO: CreateArticleDTO) {
+      const article = await this.articleService.addArticle(createArticleDTO);
       return res.status(HttpStatus.OK).json({
         message: "Article has been created successfully",
-        customer
+        article
       })
+    }
+  
+  @Get('/all')
+    async getArticles() {
+      return this.articleService.getArticles();
     }
 }

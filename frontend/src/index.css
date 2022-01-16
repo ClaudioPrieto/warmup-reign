@@ -38,12 +38,19 @@
   font-size: 13pt;
 }
 
-.articles-table tr .title {
-  color: #333;
+.articles-table .info {
+  width: 80%;
 }
 
-.articles-table tr .author {
+.articles-table .info .title {
+  color: #333;
+  float: left;
+  margin-right: 8px;
+}
+
+.articles-table .info .author {
   color: #999;
+  float: left;
 }
 
 .articles-table tr .date {
@@ -70,6 +77,9 @@ tr:hover .edit_hover_class a {
 }
 
 img {
-  max-width:5%;
+  max-width:15%;
   height:auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

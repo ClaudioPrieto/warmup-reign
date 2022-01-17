@@ -14,6 +14,12 @@ const Home = () => {
     });
   }, []);
 
+  const handleDelete = (id) => {
+    axios.delete(`${baseURL}?articleID=${id}`).then((response) => {
+      setArticles(articles.filter((i) => i._id !== id));
+    });
+  }
+
   return(
     <div className='container'>
       <div className='header'>
@@ -30,8 +36,8 @@ const Home = () => {
                 </td>
               <td className='date'>{ article.release_date }</td>
               <td>
-                <div className='edit_hover_class'>
-                  <a href='#'><img src='/trash.png' /></a>
+                <div className='edit_hover_class' onClick={() => handleDelete(article._id)}>
+                  <a><img src='/trash.png' /></a>
                 </div>
               </td>
             </tr>

@@ -2,7 +2,7 @@
 FROM node:16.13.1 as build
 
 #set work directory
-WORKDIR /app/frontend
+WORKDIR /app
 ENV PATH /app/frontend/node_modules/.bint:$PATH
 
 #install dependencies

@@ -30,9 +30,4 @@ export class ArticleController {
         article
       })
     }
-  
-  @Get('/all')
-    async getArticles() {
-      return this.articleService.getArticles();
-    }
 }

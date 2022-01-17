@@ -46,11 +46,13 @@
   color: #333;
   float: left;
   margin-right: 8px;
+  margin-left: 10px;
 }
 
 .articles-table .info .author {
   color: #999;
   float: left;
+  margin-left: 10px;
 }
 
 .articles-table tr .date {
@@ -70,16 +72,22 @@ tr:hover .edit_hover_class a {
 }
 
 .edit_hover_class a {
-  visibility:hidden;
+  visibility: hidden;
 }
 .edit_hover_class:hover a {
-  visibility:visible;
+  visibility: visible;
 }
 
 img {
-  max-width:15%;
-  height:auto;
+  max-width: 30px;
+  height: auto;
   display: block;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 30px;
+  /* width: 120px;
+    min-height: 120px;
+    max-height: auto;
+    float: left;
+    margin: 3px;
+    padding: 3px; */
 }

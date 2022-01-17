@@ -14,6 +14,7 @@ services:
       - "3000:3000"
     links:
       - api
+    stdin_open: true
   api:
     restart: always
     container_name: blog-nest

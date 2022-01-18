@@ -4,11 +4,12 @@ orbs:
 jobs:
   build-and-test:
     working_directory: "~/warmup-reign/backend"
+    docker:
+      - image: circleci/node:16
     executor:
       name: node/default
     steps:
       - checkout
-        checkout path: ~/warmup-reign
       - node/install-packages
       - run:
         command: cd backend && npm run test

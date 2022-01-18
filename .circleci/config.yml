@@ -4,13 +4,11 @@ orbs:
 jobs:
   build-and-test:
     working_directory: /home/circleci/project/backend
-    executor:
-      name: node/default
     steps:
       - checkout
       - node/install-packages
       - run:
-          command: cd backend && npm run test
+          command: npm run test
 workflows:
   build-and-test:
     jobs:

@@ -21,15 +21,6 @@ export class ArticleController {
         article
       })
   }
-
-  @Post()
-    async addArticle(@Res() res, @Body() createArticleDTO: CreateArticleDTO) {
-      const article = await this.articleService.addArticle(createArticleDTO);
-      return res.status(HttpStatus.OK).json({
-        message: "Article has been created successfully",
-        article
-      })
-    }
   
   @Get('/all')
     async getArticles() {

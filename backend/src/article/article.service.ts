@@ -5,7 +5,7 @@ import { Article } from './interfaces/article.interface';
 import { CreateArticleDTO } from './dto/create-article.dto';
 import { HttpService } from '@nestjs/axios'
 import { map } from 'rxjs/operators'
-import { Cron } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class ArticleService {
@@ -22,18 +22,11 @@ export class ArticleService {
     return deletedCustomer;
   }
 
-  async addArticle(createArticleDTO: CreateArticleDTO): Promise<Article> {
-    return await new this.articleModel({
-      ...createArticleDTO,
-      createdAt: new Date(),
-    }).save();
-  }
-
-  @Cron('45 * * * * *')
+  @Cron(CronExpression.EVERY_10_SECONDS)
   async getArticles() {
     var articlesUID:number[] = await this.articleModel.find().distinct('uid');
-
-    return await this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs').pipe(
+    console.log('Added new posts')
+    return this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodej').pipe(
       map((resp) => resp.data),
       map((data) => {
         return data.hits.map( article => {

@@ -12,7 +12,7 @@ export class ArticleService {
   constructor(@InjectModel('Article') private readonly articleModel: Model<Article>,
               private httpService: HttpService) {}
 
-  async getAllArticle(): Promise<Article[]> {
+  async findAll(): Promise<Article[]> {
     const articles = await this.articleModel.find({ deleted: false }).sort({release_date: -1}).exec();
     return articles;
   }

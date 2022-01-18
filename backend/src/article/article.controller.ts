@@ -7,8 +7,8 @@ export class ArticleController {
   constructor(private articleService: ArticleService) { }
     
   @Get()
-  async getAllArticle(@Res() res) {
-    const articles = await this.articleService.getAllArticle();
+  async findAll(@Res() res) {
+    const articles = await this.articleService.findAll();
     return res.status(HttpStatus.OK).json(articles);
   }
 

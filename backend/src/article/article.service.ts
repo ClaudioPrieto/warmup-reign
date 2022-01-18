@@ -13,7 +13,7 @@ export class ArticleService {
               private httpService: HttpService) {}
 
   async getAllArticle(): Promise<Article[]> {
-    const articles = await this.articleModel.find({ deleted: false }).exec();
+    const articles = await this.articleModel.find({ deleted: false }).sort({release_date: -1}).exec();
     return articles;
   }
 

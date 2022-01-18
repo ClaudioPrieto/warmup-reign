@@ -8,7 +8,7 @@ jobs:
       name: node/default
     steps:
       - checkout
-        path:~/warmup-reign
+        checkout path: ~/warmup-reign
       - node/install-packages
       - run:
         command: cd backend && npm run test

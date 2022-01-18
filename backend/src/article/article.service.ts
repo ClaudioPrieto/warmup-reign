@@ -32,7 +32,7 @@ export class ArticleService {
   @Cron('45 * * * * *')
   async getArticles() {
     var articlesUID:number[] = await this.articleModel.find().distinct('uid');
-    console.log('Llamandoo')
+
     return await this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs').pipe(
       map((resp) => resp.data),
       map((data) => {

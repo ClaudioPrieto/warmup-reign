@@ -3,14 +3,14 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build-and-test:
-    working_directory: ~/warmup-reign/backend
+    working_directory: ~/warmup-reign
     executor:
       name: node/default
     steps:
       - checkout
       - node/install-packages
       - run:
-          command: npm run test
+          command: cd backend && npm run test
 workflows:
   build-and-test:
     jobs:

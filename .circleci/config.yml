@@ -3,9 +3,6 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build-and-test:
-    working_directory: "~/warmup-reign/backend"
-    docker:
-      - image: circleci/node:16
     executor:
       name: node/default
     steps:

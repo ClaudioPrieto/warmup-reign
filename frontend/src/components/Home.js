@@ -64,7 +64,7 @@ const Home = () => {
               <td className='date'>{ handleDate(new Date(article.release_date))  }</td>
               <td>
                 <div className='edit_hover_class' onClick={() => handleDelete(article._id)}>
-                  <a><img src='/trash.png' /></a>
+                  <a href={() => false}><img src='/trash.png' alt=""/></a>
                 </div>
               </td>
             </tr>

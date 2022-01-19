@@ -16,9 +16,4 @@ export class ArticleController {
     async deleteArticle(@Query('articleID') articleID) {
       return await this.articleService.deleteArticle(articleID);
   }
-  // Delete when cron service is fixed
-  @Get('/all')
-    async getArticles() {
-      return this.articleService.getArticles();
-    }
 }

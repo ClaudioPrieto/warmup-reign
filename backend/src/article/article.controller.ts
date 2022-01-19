@@ -1,15 +1,14 @@
-import { Controller, Get, Res, HttpStatus, Post, Body, Put, Query, NotFoundException, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Res, HttpStatus, Query, NotFoundException, HttpCode, Delete } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { CreateArticleDTO } from './dto/create-article.dto';
 
 @Controller('articles')
 export class ArticleController {
   constructor(private articleService: ArticleService) { }
     
   @Get()
-  async findAll(@Res() res) {
-    const articles = await this.articleService.findAll();
-    return res.status(HttpStatus.OK).json(articles);
+  @HttpCode(HttpStatus.OK)
+  async findAll() {
+    return await this.articleService.findAll();
   }
 
   @Delete()

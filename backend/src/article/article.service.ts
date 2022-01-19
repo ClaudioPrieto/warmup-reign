@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Article } from './interfaces/article.interface';
@@ -21,21 +21,17 @@ export class ArticleService {
     return deletedCustomer;
   }
 
-  @Cron(CronExpression.EVERY_5_SECONDS)
-  async getArticles(): Promise<any> {
-    var mongoose = require('mongoose');
-    // console.log(mongoose.connection.readyState);
+  @Cron('0 0 * * * *')
+  async getArticles() {
+    (await this.requestArticles())
+    .subscribe()
+  }
 
+  async requestArticles() {
     var articlesUID:number[] = await this.articleModel.find().distinct('uid');
-
-    // console.log(mongoose.connection.readyState);
-    mongoose.connect('mongodb://mongo/warmup-app', {useNewUrlParser: true});
-    console.log(mongoose.connection.readyState);
     
-    return this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs&tags=story').pipe(
-      tap(() => console.log('sssss')),
+    return this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs').pipe(
       map((resp) => resp.data),
-      tap((data) => console.log(data)),
       map((data) => {
         return data.hits.map( article => {
           if (!articlesUID.includes(article.story_id) && (article.title || article.story_title)) {
@@ -45,13 +41,7 @@ export class ArticleService {
               author: article.author,
               url: article.url || article.story_url,
               release_date: article.created_at
-            }).save(function(err){
-              if (err) {
-                console.log("Error: " + err);
-              } else {
-                console.log("success! You saved a new item.");
-              }
-            });
+            }).save();
           } 
         })
       }),

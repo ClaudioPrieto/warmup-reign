@@ -1,4 +1,4 @@
-import { Controller, Get, Res, HttpStatus, Query, NotFoundException, HttpCode, Delete } from '@nestjs/common';
+import { Controller, Get, Param, HttpStatus, Query, NotFoundException, HttpCode, Delete } from '@nestjs/common';
 import { ArticleService } from './article.service';
 
 @Controller('articles')
@@ -12,15 +12,11 @@ export class ArticleController {
   }
 
   @Delete()
-    async deleteArticle(@Res() res, @Query('articleID') articleID) {
-      const article = await this.articleService.deleteArticle(articleID);
-      if (!article) throw new NotFoundException('Article does not exist');
-      return res.status(HttpStatus.OK).json({
-        message: 'Article has been deleted',
-        article
-      })
+  @HttpCode(HttpStatus.OK)
+    async deleteArticle(@Query('articleID') articleID) {
+      return await this.articleService.deleteArticle(articleID);
   }
-  
+  // Delete when cron service is fixed
   @Get('/all')
     async getArticles() {
       return this.articleService.getArticles();

@@ -11,6 +11,7 @@ describe('ArticleController', () => {
       provide: ArticleService,
       useFactory: () => ({
         findAll: jest.fn(),
+        deleteArticle: jest.fn(),
       }),
     };
     const app: TestingModule = await Test.createTestingModule({
@@ -24,8 +25,16 @@ describe('ArticleController', () => {
 
   describe('findAll', () => {
     it('should call findAll articles service', async () => {
-        articleController.findAll();
+      articleController.findAll();
       expect(articleService.findAll).toHaveBeenCalled();
+    });
+  });
+
+  describe('deleteArticle', () => {
+    it('should delete article', async () => {
+      const articleID = '61e56630f7ff0570'
+      articleController.deleteArticle(articleID);
+      expect(articleService.deleteArticle).toHaveBeenCalled();
     });
   });
 });

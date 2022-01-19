@@ -11,11 +11,3 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["npm", "run", "start"]
-
-#production enviorment
-# FROM nginx:1.17.8-alpine
-# COPY --from=build /app/client-react/build /usr/share/html
-# RUN rm /etc/nginx/conf.d/default.conf
-# COPY nginx/nginx.conf /etc/nginx/conf.d
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemmon off;"]

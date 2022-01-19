@@ -2,7 +2,7 @@
 
 ## Run using Docker Compose
 
-Ensure also that [Docker is installed](https://docs.docker.com/engine/install) on your work station
+Ensure that [Docker is installed](https://docs.docker.com/engine/install) on your work station and run:
 
 ```bash
 # Build the docker image

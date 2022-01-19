@@ -15,4 +15,5 @@ import { ScheduleModule } from '@nestjs/schedule';
   providers: [ArticleService],
   controllers: [ArticleController]
 })
+
 export class ArticleModule {}

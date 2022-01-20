@@ -34,7 +34,6 @@ export class ArticleService {
       map((resp) => resp.data),
       map((data) => {
         return data.hits.map( article => {
-          console.log(article.story_id)
           if (article.story_id && !articlesUID.includes(article.story_id) && (article.title || article.story_title)) {
             return new this.articleModel({ 
               uid: article.story_id,

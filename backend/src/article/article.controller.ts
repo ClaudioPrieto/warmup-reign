@@ -1,4 +1,4 @@
-import { Controller, Get, Param, HttpStatus, Query, NotFoundException, HttpCode, Delete } from '@nestjs/common';
+import { Controller, Get, Param, HttpStatus, Query, HttpCode, Delete } from '@nestjs/common';
 import { ArticleService } from './article.service';
 
 @Controller('articles')

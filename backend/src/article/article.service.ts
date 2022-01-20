@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Article } from './interfaces/article.interface';
@@ -21,7 +21,7 @@ export class ArticleService {
     return deletedCustomer;
   }
 
-  @Cron('0 0 * * * *')
+  @Cron(CronExpression.EVERY_5_SECONDS)
   async getArticles() {
     (await this.requestArticles())
     .subscribe()
@@ -29,12 +29,13 @@ export class ArticleService {
 
   async requestArticles() {
     var articlesUID:number[] = await this.articleModel.find().distinct('uid');
-    
+
     return this.httpService.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs').pipe(
       map((resp) => resp.data),
       map((data) => {
         return data.hits.map( article => {
-          if (!articlesUID.includes(article.story_id) && (article.title || article.story_title)) {
+          console.log(article.story_id)
+          if (article.story_id && !articlesUID.includes(article.story_id) && (article.title || article.story_title)) {
             return new this.articleModel({ 
               uid: article.story_id,
               title: article.title || article.story_title,

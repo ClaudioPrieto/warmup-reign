@@ -20,7 +20,6 @@
   font-size: 50pt;
 }
 
-
 .articles-table {
   font-family: "Lucida Console", "Courier New", monospace;
   border-collapse:separate; 
@@ -84,10 +83,4 @@ img {
   display: block;
   margin-left: auto;
   margin-right: 30px;
-  /* width: 120px;
-    min-height: 120px;
-    max-height: auto;
-    float: left;
-    margin: 3px;
-    padding: 3px; */
 }
